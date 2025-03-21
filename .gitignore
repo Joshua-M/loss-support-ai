@@ -168,6 +168,18 @@ cython_debug/
 #.idea/
 
 # Ruff stuff:
+
+# Streamlit config folder
+.streamlit/
+
+# Output reports (if you generate PDFs or charts)
+*.pdf
+*.png
+*.jpg
+*.xlsx
+output/
+reports/
+
 .ruff_cache/
 
 # PyPI configuration file
