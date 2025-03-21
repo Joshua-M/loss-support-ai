@@ -1,4 +1,5 @@
 import streamlit as st
+import datetime
 from loss_calculator import calculate_loss, generate_summary
 from gpt_helper import generate_gpt_explanation
 
@@ -9,11 +10,16 @@ Enter details below to calculate the estimated loss of support due to a motor ve
 and receive an AI-powered explanation of the results.
 """)
 
+# --- Date boundaries ---
+today = datetime.date.today()
+min_dob = datetime.date(1900, 1, 1)
+max_future = datetime.date(2100, 12, 31)
+
 # --- Sidebar for Inputs ---
 st.sidebar.header("📋 Claim Inputs")
-accident_date = st.sidebar.date_input("Date of Accident")
-calculation_date = st.sidebar.date_input("Date of Calculation")
-birth_date = st.sidebar.date_input("Date of Birth")
+accident_date = st.sidebar.date_input("Date of Accident", value=today, min_value=min_dob, max_value=max_future)
+calculation_date = st.sidebar.date_input("Date of Calculation", value=today, min_value=min_dob, max_value=max_future)
+birth_date = st.sidebar.date_input("Date of Birth", value=datetime.date(1980, 1, 1), min_value=min_dob, max_value=today)
 
 annual_earnings = st.sidebar.number_input("Annual Earnings at Time of Accident (R)", min_value=0.0, value=100205.0)
 retirement_age = st.sidebar.slider("Retirement Age", 55, 70, 65)
