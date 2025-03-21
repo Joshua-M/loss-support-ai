@@ -41,6 +41,9 @@ if st.sidebar.button("Calculate Loss"):
             contingency=contingency
         )
 
+        # Ensure age is cast to int before displaying
+        results["current_age"] = int(results["current_age"])
+
         summary_text = generate_summary(results)
         explanation = generate_gpt_explanation(summary_text)
 
